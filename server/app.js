@@ -1,9 +1,24 @@
-// moddules for node and express
+/*
+Author : Sushmita Nandalan
+Student ID: 300923159
+Date: February 25, 2019
+File name: COMP308-W2019-Midterm-300923159
+Heroku app: https://comp308-w2019midterm-300923159.herokuapp.com/
+*/
+
+// modules for node and express
 let createError = require('http-errors');
 let express = require('express');
 let path = require('path');
 let cookieParser = require('cookie-parser');
 let logger = require('morgan');
+
+// modules for authentication
+let session = require('express-session');
+let passport = require('passport');
+let passportLocal=require('passport-local');
+let localStrategy=passportLocal.Strategy;
+let flash= require('connect-flash');
 
 // import "mongoose" - required for DB Access
 let mongoose = require('mongoose');
@@ -35,6 +50,33 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, '../client')));
+
+//Setup express-session
+app.use(session({
+  secret: "someSecrate",
+  saveUninitialized: false,
+  resave: false
+
+}));
+
+//Initialize flash
+app.use(flash());
+
+//Initializing passport
+app.use(passport.initialize());
+app.use(passport.session());
+
+// Create user model
+let userModel = require('./models/user');
+let User=userModel.User;
+
+//Implement a user authentication strategy
+passport.use(User.createStrategy());
+
+// serialize and deserialize the user info
+passport.serializeUser(User.serializeUser());
+
+passport.deserializeUser(User.deserializeUser());
 
 
 // route redirects
