@@ -4,3 +4,50 @@ Date: February 25, 2019
 File name: COMP308-W2019-Midterm-300923159
 Heroku app: https://comp308-w2019midterm-300923159.herokuapp.com/-->
 
+<% include ../partials/header.ejs %>
+<main class="container">
+    <% if(userInput.length > 0) { %>
+        <div class="alert alert-danger">
+            <%= userInput %>
+        </div>
+    <% } %>
+    <div class="row">
+        <div class="col-md-offset-4 col-md-4">
+            <h1>Please Register Below</h1>
+            <form method="POST" >
+                <fieldset class="form-group">
+                    <label for="username">Username:</label>
+                    <input type="text" class="form-control" 
+                    name="username" placeholder="Please Enter Username" 
+                    id="username" required >
+                </fieldset>
+                <fieldset class="form-group">
+                    <label for="password">Password:</label>
+                    <input type="password" class="form-control" 
+                    name="password" placeholder="Please Enter Password" 
+                    id="password" required >
+                </fieldset>
+                <fieldset class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" class="form-control" 
+                    name="email" placeholder="Please Enter Email" 
+                    id="email" required >
+                </fieldset>
+                <fieldset class="form-group">
+                    <label for="displayName">Dispaly Name:</label>
+                    <input type="text" class="form-control" 
+                    name="displayName" placeholder="Please Enter Display Name" 
+                    id="displayName" required >
+                </fieldset>
+                <fieldset class="form-group text-right">
+                    <input type="submit" class="btn btn-success" value="Register">
+                    <a href="/">
+                        <input type="button" class="btn btn-warning" value="Cancel">
+                    </a>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+</main>
+
+<% include ../partials/footer.ejs %>
