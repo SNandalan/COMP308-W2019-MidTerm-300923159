@@ -14,6 +14,18 @@ let mongoose = require('mongoose');
 // define the book model
 let book = require('../models/books');
 
+//user authentication
+function requireAuth(req, res, next){
+  //check if the user is logged in
+  console.log(req.user);
+  if(!req.isAuthenticated()){
+    return res.redirect('/login');
+  }
+  else{
+  next();
+  }
+}
+
 /* GET books List page. READ */
 router.get('/', (req, res, next) => {
   // find all books in the books collection
