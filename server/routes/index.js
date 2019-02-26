@@ -2,6 +2,7 @@
 Author : Sushmita Nandalan
 Student ID: 300923159
 Date: February 25, 2019
+GitHub: https://github.com/SNandalan/COMP308-W2019-MidTerm-300923159
 File name: COMP308-W2019-Midterm-300923159
 Heroku app: https://comp308-w2019midterm-300923159.herokuapp.com/
 */
